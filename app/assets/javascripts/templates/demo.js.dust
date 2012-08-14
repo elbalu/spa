@@ -1,0 +1,58 @@
+<h2>Create a new  ccc Post</h2>
+
+<form id="new-post">
+  <p>
+    <label for="new-post-name">Type</label>
+    <input type="radio" name="new-post-type" value="lend">Lend</input>
+    <input type="radio" name="new-post-type" value="request">request</input>
+  </p>
+  <p>
+    <input name="new-post-uid" id="new-post-uid" type="hidden" value="100"/>
+    <label for="new-post-name">name</label>
+    <input name="new-post-name" id="new-post-name" type="text"/>
+  </p>
+  <p>
+    <label for="new-post-amount">Amount</label>
+    <input name="new-post-amount" id="new-post-amount" type="text"/>
+  </p>
+  <p>
+    <label for="new-post-rent">Rent</label>
+    <input name="new-post-rent" id="new-post-rent" type="text"/>
+    <label> / </label>
+    <select id="new-post-duration">
+      <option>a week</option>
+      <option>two weeks</option>
+      <option>a month</option>
+      <option>for ever</option>
+    </select>
+  </p>
+  <p>
+    <label for="new-post-want-duration">Want it for: </label>
+    <select id="new-post-want-duration">
+      <option>a week</option>
+      <option>two weeks</option>
+      <option>a month</option>
+      <option>for ever</option>
+    </select>
+  </p>
+  <input type="submit" value="Save and Share"> <a href="#">reset</a>
+</form><!-- #new-post -->
+
+<hr>
+{#posts.models}
+	{#attributes}	
+		 <div class="post">
+  			<h3>{name}</h3>
+  			<p>{type}</p>
+  			<p><a href="#" class="remove-post" id="{_id}">Remove Post</a></p>
+  		</div>
+
+  	{/attributes}
+{:else}
+  You have no posts
+{/posts.models}
+
+
+  
+
+
