@@ -26,6 +26,7 @@ createPost:function(e){
       name: $('#new-post-name').val(),
       type: $('#new-post-type').val(),
       uid: $('#new-post-uid').val(),
+      avatar: $('#new-post-image').val(),
 
     }
     console.log("attributes.name");

@@ -1,50 +1,94 @@
-<h2>Create a new  ccc Post</h2>
-
-<form id="new-post">
-  <p>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+         <h2>Create a new post</h2>
+    </div>
+  </div>
+</div>
+<div class="row">
+<div class="span9">
+<form id="new-post" class="form-horizontal">
+  <div class="control-group">
+    <label for="new-post-name" class="control-label">Type</label>
+    <div class="controls">
+      <label class="radio">
+        <input type="radio" name="new-post-type" value="request" checked="checked" id="requestRadio" >Request</input>
+      </label>
+      <label class="radio">
+        <input type="radio" name="new-post-type" value="lend" id="lendRadio">Lend</input>
+      </label>
+    </div>
+  </div>
+  <!--
+   <div class="control-group">
     <label for="new-post-name">Type</label>
-    <input type="radio" name="new-post-type" value="lend">Lend</input>
-    <input type="radio" name="new-post-type" value="request">request</input>
-  </p>
-  <p>
+    <div class="field switch">
+    <input type="radio" id="radio1" name="new-post-type"  checked />
+    <input type="radio" id="radio2" name="new-post-type" />
+    <label for="radio1" class="cb-enable selected"><span>Request</span></label>
+    <label for="radio2" class="cb-disable"><span>Lend</span></label>
+</div>   -->
+  <div class="control-group">
     <input name="new-post-uid" id="new-post-uid" type="hidden" value="100"/>
-    <label for="new-post-name">name</label>
-    <input name="new-post-name" id="new-post-name" type="text"/>
-  </p>
-  <p>
-    <label for="new-post-amount">Amount</label>
-    <input name="new-post-amount" id="new-post-amount" type="text"/>
-  </p>
-  <p>
-    <label for="new-post-rent">Rent</label>
-    <input name="new-post-rent" id="new-post-rent" type="text"/>
-    <label> / </label>
-    <select id="new-post-duration">
-      <option>a week</option>
-      <option>two weeks</option>
-      <option>a month</option>
-      <option>for ever</option>
-    </select>
-  </p>
-  <p>
-    <label for="new-post-want-duration">Want it for: </label>
-    <select id="new-post-want-duration">
-      <option>a week</option>
-      <option>two weeks</option>
-      <option>a month</option>
-      <option>for ever</option>
-    </select>
-  </p>
+    <label for="new-post-name" class="control-label">Product Name</label>
+    <div class="controls">
+      <input name="new-post-name" id="new-post-name" type="text"/>
+    </div>
+  </div>  
+  <!--div class="control-group">
+    <label for="new-post-amount" class="control-label">Amount</label>
+    <div class="controls">
+      <input name="new-post-amount" id="new-post-amount" type="text"/>
+    </div>
+  </div-->  
+  <div class="control-group lendData" >
+    <label for="new-post-image" class="control-label">Product image</label>
+    <div class="controls form-inline">
+      <div class="input-prepend input-append">
+        <input type="file" name="avatar" id="new-post-image" type="text" size="4" class="span2">
+      </div>
+    </div>
+  </div>
+  <div class="control-group lendData" >
+    <label for="new-post-rent" class="control-label">Rent</label>
+    <div class="controls form-inline">
+      <div class="input-prepend input-append">
+        <span class="add-on">$</span><input name="new-post-rent" id="new-post-rent" type="text" size="4" class="span1">
+  </div>
+      
+      <label>&#160;/&#160; </label>
+      <select id="new-post-duration" class="span2">
+        <option>a week</option>
+        <option>two weeks</option>
+        <option>a month</option>
+        <option>for ever</option>
+      </select>
+    </div>
+  </div>  
+  <div class="control-group requestData">
+    <label for="new-post-want-duration" class="control-label">Want it for: </label>
+    <div class="controls">
+      <select id="new-post-want-duration" class="span2">
+        <option>a week</option>
+        <option>two weeks</option>
+        <option>a month</option>
+        <option>for ever</option>
+      </select>
+    </div>
+  </div>  
+  <div class="form-actions">
   <input type="submit" value="Save and Share"> <a href="#">reset</a>
+  </div>
 </form><!-- #new-post -->
-
+</div>
+<div class="span3 pull-right">
 <hr>
 {#posts.models}
 	{#attributes}	
 		 <div class="post">
   			<h3>{name}</h3>
-  			<p>{type}</p>
-  			<p><a href="#" class="remove-post" id="{_id}">Remove Post</a></p>
+  			<div>{type}</div>  
+  			<div><a href="#" class="remove-post" id="{_id}">Remove Post</a></div>  
   		</div>
 
   	{/attributes}
@@ -54,5 +98,4 @@
 
 
   
-
 

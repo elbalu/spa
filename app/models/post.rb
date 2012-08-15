@@ -2,8 +2,12 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
+  include Mongoid::Paperclip
+
+  
   require 'User'  
   require 'json'
+
 #  before_filter :authenticate_user!
  
 
@@ -58,12 +62,13 @@ class Post
   field :uid, :type=>Moped::BSON::ObjectId
   field :name, :type=>String
   field :type, :type=>String
+  has_mongoid_attached_file :avatar
   field :profilePic, :type=>String
 
   field :groupname, :type=>String
   
   validates_presence_of :uid
-  attr_accessible :pid, :uid, :name, :type,:profilePic, :groupname
+  attr_accessible :pid, :uid, :name, :type,:profilePic, :groupname, :avatar
 
   def self.show_filter(uid, pid)
 

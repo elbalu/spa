@@ -13,7 +13,7 @@ class PostsController < ApplicationController
       @post = Post.show_filter(params[:uid], params[:pid])
 
       print "ANAND in post show", @post#type
-      logger.info("##########################")
+    #  logger.info("##########################")
       respond_with @post
     end
   end

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.7'
-gem 'libv8', '~> 3.11.8'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -11,9 +11,10 @@ gem 'libv8', '~> 3.11.8'
 
 gem 'backbone-on-rails'
 gem "mongoid", "~> 3.0.0"
-gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
+#gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
 
-gem 'therubyracer' # Ruby
+#gem 'therubyracer' # Ruby
+
 #gem 'less-rails'
 #gem 'less-rails-bootstrap'
 #gem 'twitter-bootstrap-rails' #:git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static"
@@ -21,8 +22,9 @@ gem 'therubyracer' # Ruby
 #gem 'dust-rails'
 # Gems used only for assets and not required
 # in production environments by default.
+gem "mongoid-paperclip", :require => "mongoid_paperclip"
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+#  gem 'less-rails'
   gem 'coffee-rails', '~> 3.2.1'
 gem 'dust-rails'
 #gem 'less'
