@@ -1,8 +1,12 @@
 Spa::Application.routes.draw do
  
 
-    root to: 'home#index'
+   root to: 'home#index'
   resources :posts
+
+
+  resources :locations
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

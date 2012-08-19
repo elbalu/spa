@@ -28,7 +28,7 @@
 //= require_tree ./routers
 //= require_tree .
 $(document).ready(function(){
-	alert("****");
+	//alert("****");
 	// $(".cb-enable").click(function(){
  //        var parent = $(this).parents('.switch');
  //        $('.cb-disable',parent).removeClass('selected');

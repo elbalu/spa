@@ -11,6 +11,7 @@ gem 'rails', '3.2.7'
 
 gem 'backbone-on-rails'
 gem "mongoid", "~> 3.0.0"
+
 #gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 #gem 'therubyracer' # Ruby

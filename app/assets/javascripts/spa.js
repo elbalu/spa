@@ -5,6 +5,7 @@ window.Spa = {
   Routers: {},
   init: function() {
     new Spa.Routers.Posts();
+   // new Spa.Routers.Locations();
     Backbone.history.start();
   }
 };

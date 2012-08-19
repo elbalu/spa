@@ -1,0 +1,63 @@
+<h2>Map your location</h2>
+<div id="map"></div>
+
+
+
+<aside id="mapInfo">
+			<section id="msgCtn">
+				<h5 class="loc">Message for you!</h5>
+				<div id="errCtn"></div>
+			</section>
+			<section id="mapLocation">
+				<header><h5>Your Locations</h5></header>
+				<nav>
+					<ul id="locations">
+					</ul>
+				</nav>
+			</section>
+			<section id="mapContact">
+				<header><h5>Contact info</h5></header>
+				<nav>
+					<ul>
+						<li>
+							<input type="email" value="" id="contactEmail"> <a href="#">save</a>
+						</li>
+						<li>
+							<input type="phone" value="" id="contactPhone"> <a href="#">save</a>
+						</li>
+						
+					</ul>
+				</nav>
+			</section>
+			<section id="mapHelp">
+				<header id="mapHelpHeader">
+					<h5>Help Center</h5><div id="alignRight">V</div>
+				</header>
+				<section id="mapHelpBody">
+					<nav>
+						<ul>
+							<li>my current location is showing wrong.</li>
+							<li>Oops! it happens when you are connected to LAN and not the WIFI.</li>
+						</ul>
+					</nav>
+					<nav>
+						<ul>
+							<li>How many Locations can i add?</li>
+							<li>Current location plus two more. it can be your working area or living area.</li>
+						</ul>
+					</nav>
+					<nav>
+						<ul>
+							<li>What is the distance to pin my area in map?</li>
+							<li>you can pin within 40km raduis of your current location.</li>
+						</ul>
+					</nav>
+					<nav>
+						<ul>
+							<li>Why should I pin?</li>
+							<li>based on your pinned locations we will show you the posts within 20km radius of your pineed locations.</li>
+						</ul>
+					</nav>
+				</section>
+			</section>
+		</aside>
