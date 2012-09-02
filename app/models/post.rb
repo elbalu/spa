@@ -2,7 +2,7 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
-  include Mongoid::Paperclip
+ # include Mongoid::Paperclip
 
   
   require 'User'  
@@ -62,7 +62,7 @@ class Post
   field :uid, :type=>Moped::BSON::ObjectId
   field :name, :type=>String
   field :type, :type=>String
-  has_mongoid_attached_file :avatar
+  #has_mongoid_attached_file :avatar
   field :profilePic, :type=>String
 
   field :groupname, :type=>String

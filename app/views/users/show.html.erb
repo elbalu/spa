@@ -1,0 +1,6 @@
+<h1>show  page</h1>
+<h3>User</h3>
+<p>User: <%= @user.name %></p>
+<p>Email: <%= @user.email if @user.email %></p>
+<img src="<%= @user.image %>"/>
+<%= link_to @user.name, @user %> signed up <%= @user.created_at.to_date %>

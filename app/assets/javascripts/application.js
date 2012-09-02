@@ -21,35 +21,35 @@
 //= require spa
 
 //
-//= require_tree ../templates/
+//= require_tree ./templates/
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views
 //= require_tree ./routers
 //= require_tree .
 $(document).ready(function(){
-	//alert("****");
-	// $(".cb-enable").click(function(){
- //        var parent = $(this).parents('.switch');
- //        $('.cb-disable',parent).removeClass('selected');
- //        $(this).addClass('selected');
- //        $('.checkbox',parent).attr('checked', true);
- //    });
- //    $(".cb-disable").click(function(){
- //    	console.log(this);
- //        var parent = $(this).parents('.switch');
- //        $('.cb-enable',parent).removeClass('selected');
- //        $(this).addClass('selected');
- //        $('.checkbox',parent).attr('checked', false);
- //    });
+//alert("****");
+// $(".cb-enable").click(function(){
+ // var parent = $(this).parents('.switch');
+ // $('.cb-disable',parent).removeClass('selected');
+ // $(this).addClass('selected');
+ // $('.checkbox',parent).attr('checked', true);
+ // });
+ // $(".cb-disable").click(function(){
+ // console.log(this);
+ // var parent = $(this).parents('.switch');
+ // $('.cb-enable',parent).removeClass('selected');
+ // $(this).addClass('selected');
+ // $('.checkbox',parent).attr('checked', false);
+ // });
 $('.lendData').hide();
 $('#lendRadio').click(function(){
-	$('.lendData').show('slow');
-	$('.requestData').hide('slow');
+$('.lendData').show('slow');
+$('.requestData').hide('slow');
 });
 $('#requestRadio').click(function(){
-	$('.lendData').hide('slow');
-	$('.requestData').show('slow');
+$('.lendData').hide('slow');
+$('.requestData').show('slow');
 });
 
 });

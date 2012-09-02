@@ -1,0 +1,15 @@
+<h2>Logged in user</h2>
+{#users.models}
+	{#attributes}	
+		 <div class="userInfo">
+
+  			<h3>{name}</h3>
+  			<div>{_id}</div>  
+  			 
+  		</div>
+
+  	{/attributes}
+{:else}
+  You have no users
+{/users.models}
+

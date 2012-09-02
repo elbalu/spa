@@ -1,9 +1,11 @@
 <div class="navbar">
-  <div class="navbar-inner">
+  
     <div class="container">
+    {<location/}
          <h2>Create a new post</h2>
+         <div class="pull-right"><a href="/signin">Sign in using FaceBook</a></div>
     </div>
-  </div>
+  
 </div>
 <div class="row">
 <div class="span9">
@@ -83,6 +85,23 @@
 </div>
 <div class="span3 pull-right">
 <hr>
+<p> user model </p>
+{#users.models}
+  {#attributes} 
+     <div class="userInfo">
+
+        <h3>{name}</h3>
+        <div>{_id}</div>  
+         
+      </div>
+
+    {/attributes}
+{:else}
+  You have no users
+{/users.models}
+
+
+
 {#posts.models}
 	{#attributes}	
 		 <div class="post">

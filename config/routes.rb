@@ -1,12 +1,24 @@
 Spa::Application.routes.draw do
- 
+  resources :sessions
 
-   root to: 'home#index'
+ # root to: 'home#index'
   resources :posts
+#  match '/auth/facebook/callback', to: 'authentications#create'
+  root :to => "home#index", :as =>:home
+  match '/auth/facebook/setup', :to => 'facebook#setup'
+  resources :users, :only => [ :show, :edit, :update ]
+  match '/auth/:provider/callback' => 'sessions#create'
+  match '/signin' => 'sessions#new', :as => :signin
+  match '/signout' => 'sessions#destroy', :as => :signout
+  match '/auth/failure' => 'sessions#failure'
+  #match '/:id' => 'users#show', :as => :profile
+  match '/:id' => 'users#index', :as => :profile
+#  match '/:id'=>'user#show'
+
+# resources :users, :only => [:show, :index]
+ #, :only => [:show, :index]
 
 
-  resources :locations
-  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
