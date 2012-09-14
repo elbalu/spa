@@ -42,6 +42,7 @@ respond_to :json
     #print "friends ID ===========" 
       
     session[:user_id] = @user.id
+
     # @after_sign_in_url = '/'
     # redirect_to @after_sign_in_url
     if @user.email.blank?
@@ -52,7 +53,13 @@ respond_to :json
       #redirect_to root_url, :notice => 'Signed in!'
       #redirect_to root_url(@user => params[user])
       #redirect_to '/#{user.id}'
-      redirect_to :controller=>"home", :action=>"index", :id => @user.id
+     # redirect_to :controller=>"home", :action=>"index", :id => @user.id
+     #redirect_to url_for "#users/show", :id=&gt;@user.id
+    # redirect_to url_for :controller => 'users', :action => 'show'                # => 'proto://host.com/posts/recent'
+     #redirect_to users_path, :action=>'show', :anchor => '/', :id =>@user.id
+     #redirect_to url_for(:controller=>'users',:action=>:index)+"#order"
+     redirect_to :controller => 'users', :action => 'show', :id => @user.id
+     
     end
 
   end

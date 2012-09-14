@@ -11,8 +11,10 @@ Spa::Application.routes.draw do
   match '/signin' => 'sessions#new', :as => :signin
   match '/signout' => 'sessions#destroy', :as => :signout
   match '/auth/failure' => 'sessions#failure'
-  #match '/:id' => 'users#show', :as => :profile
+  match '/users/show/:id', :to => redirect{"http://localhost:3000/#/users/show/"+:id} #'users#show', :as => :profile
   match '/:id' => 'users#index', :as => :profile
+  match '/users/update/:id' => 'users#update'
+
 #  match '/:id'=>'user#show'
 
 # resources :users, :only => [:show, :index]

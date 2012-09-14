@@ -1,6 +1,9 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Timestamps::Created
+  include Mongoid::Timestamps::Updated
+ 
 #require 'PersonalInfo'
 require 'Post'
 require 'json'
@@ -62,7 +65,7 @@ require 'json'
   index({ name: 1 }, { unique: true, background: true })
   index({ uid: 1 }, { unique: true, background: true })
   field :provider, type: String
-  field :uid, type: String
+  field :uid, :type=>Moped::BSON::ObjectId
   field :token, type: String
   #field :secret, type: String
   field :first_name, type: String
@@ -80,20 +83,97 @@ require 'json'
   field :work_lng,:type => String
   field :work_lat,:type => String
   field :default_home_location, :type =>String
+  field :created_at, :type=>DateTime
+  field :location, :type=>Hash
+
   attr_accessible :provider, :uid, :name, :email, :name, :image, :first_name, :last_name, :token,:friend_id,
                   :home_lat, :home_lng, :default_lat, :default_lng, :default_home_location, :home_location_name,
-                  :work_lng, :work_lat, :work_location_name, :work_group_name
+                  :work_lng, :work_lat, :work_location_name, :work_group_name,
+                  :id
 
   validates_presence_of :name, :uid
-
+  module UserUpdates
+    UPDATE_LOCATION =0
+    UPDATE_DEFAULT_WORK_LOCATION = 1
+    UPDATE_DEFAULT_HOME_LOCATION = 2
+    UPDATE_PERSONAL_INFO = 3
+  end
   # run 'rake db:mongoid:create_indexes' to create indexes
   index({ email: 1 }, { unique: true, background: true })
+
+
+  def self.check_user_exists(newUser)
+   if User.find(newUser.uid).length >0
+     return 
+   else
+     return true
+   end    
+ end
+
+  def self.set_update_user(id, update_obj, update_type)
+    logger.info("ANAND update")    
+
+    if update_type == UserUpdates::UPDATE_LOCATION then
+       
+    end  
+    test_mode = 1
+    if test_mode ==1 then 
+      update_obj = Hash.new 
+      update_obj['lng'] = '89.22'
+      update_obj['lat'] = '0.22'
+      local_json = update_obj.to_json
+      #logger.info("ANAND constructed local json = #{local_json}")
+      #@anand_loaded = User.find(id)
+      
+      #logger.info("ANAND loaded user = #{@anand_loaded.inspect}")
+      #id = BSON::ObjectId(params[:id])
+      
+
+      #@update_user = User.where(:_id=> Moped::BSON::ObjectId(id))#.find_and_modify(local_json, new: true)
+      logger.info(" Record searching")
+      
+      user_collection = User.collection
+      find_updated(update_obj)
+      
+      # @update_user = user_collection.findAndModify({
+      #         query:{"_id"=>id} },
+      #         update:{$set: }, 
+      #         new: true
+      #         })
+      # logger.info(" Record found and  updated #{@update_user.inspect}")
+      #redirect_to profile_path(@user)
+    else
+      find_updated(obj_for_update)
+      #respond_with User.find_and_modi(params[:id], params[:user])
+      #set_update_user(params[:user])
+      #respond_with User.where(_id: id).find_and_modify(user, new: true)
+    end
+    # rescue
+    #   logger.info("No Record found to update")
+    #   #respond_with nil  
+  end  
+
+
+
+  # def self.find_updated(obj_for_update)
+  #   #update all objects in the hash 
+  #   hash_obj = JSON.parse(obj_for_update)
+  #   if hash_obj.has_key?("location") then  
+  #     if hash_obj.include_key?("work") return UserUpdates::UPDATE_DEFAULT_WORK_LOCATION
+  #      end 
+  #   end    
+  # end
+  
+
+
+
 
   def self.create_with_omniauth(auth, map)
     create! do |user|
       user.provider = auth['provider']   
       user.token = auth['credentials']['token']      
       user.uid = auth['uid']
+      
       if auth['info']
          #store_friends(user, auth)         
          store_personalInfo(user, auth)         
@@ -101,6 +181,10 @@ require 'json'
       end
     end
   end
+
+
+
+
 
   def self.store_personalInfo(user, auth)
     if auth['info']
@@ -116,16 +200,17 @@ require 'json'
 
 
   def self.store_location_and_group(user, map)
-    if map != nil       
+    if map != nil
       map_hash = JSON.parse(map)
-      user.home_lat, user.default_lat = map_hash["home_lat"] || nil
-      user.home_lng, user.default_lng = map_hash["home_lng"] || nil
-      user.default_home_location ||= user.home_location_name = map_hash["home_location_name"] || nil
+      user.location = Hash.new
+      user.location["home_lat"], user.default_lat = map_hash["home_lat"] || nil
+      user.location["home_lng"], user.default_lng = map_hash["home_lng"] || nil
+      user.location["home_location_name"] ||= user.default_home_location = map_hash["home_location_name"] || nil
       
-      user.work_group_name = map_hash["work_group_name"] || nil
-      user.work_location_name = map_hash["work_location_name"] || nil
-      user.work_lat = map_hash["work_lat"] || nil
-      user.work_lng = map_hash["work_lng"] || nil      
+      user.location["work_group_name"] = map_hash["work_group_name"] || nil
+      user.location["work_location_name"] = map_hash["work_location_name"] || nil
+      user.location["work_lat"] = map_hash["work_lat"] || nil
+      user.location["work_lng"] = map_hash["work_lng"] || nil      
     end
   end
 
@@ -228,14 +313,5 @@ end
   #   logger.info("type = #{@user.to_json}")
   
   # end
-
-  def self.check_and_validate_new_user(newUser)
-   if User.find(newUser.fbid).length >0
-     return false
-   else
-     return true
-   end    
- end
-
 
 end
