@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   #before_filter :correct_user?
-respond_to :json  
+  respond_to :json  
 
   def index
     logger.info("###############################")
@@ -15,7 +15,7 @@ respond_to :json
     logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     respond_with User.find(params[:id])
   end
-  
+
   def edit
     respond_with User.find(params[:id])
   end
@@ -42,10 +42,11 @@ respond_to :json
 
   def update
     #respond_with User.update(params[:id], params[:user])
+    logger.info("$$$$$$$$$$$$ inside User::UPDATE")
     @id = params[:id]
     @user = params[:user]
     @update_type = params[:update_type]
-    respond_with User.set_update_user(@id, @user, @update_type)
+    respond_with User.update_user(@id, @user)
   end
  
   def destroy

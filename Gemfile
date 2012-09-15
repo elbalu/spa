@@ -6,7 +6,8 @@ gem 'rails', '3.2.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #require 'rubygems'
- # require 'mongo'
+#gem 'mongo'
+#gem 'bson_ext'
  # source 'http://gemcutter.org'
 
 gem 'backbone-on-rails'
