@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     logger.info("$$$$$$$$$$$$ inside User::UPDATE")
     @id = params[:id]
     @user = params[:user]
-    @update_type = params[:update_type]
+    #@update_type = params[:update_type]
     respond_with User.update_user(@id, @user)
   end
  

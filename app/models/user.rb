@@ -64,7 +64,7 @@ class User
 
   def self.update_user(id, update_obj)
     logger.info("ANAND UPDATE FOR #{id.inspect}")
-    test_mode = 1
+    test_mode = 0
     user_hash = Hash.new
     unless update_obj.nil? then
       user_hash = JSON.parse(update_obj)
@@ -73,59 +73,43 @@ class User
     if test_mode == 1 then
       user_hash["location"] = User.create_dummy_location
       logger.info("ANAND UPDATING USER LOCATION #{user_hash.inspect}")
-      User.update_location(id, user_hash)
+      return User.update_location(id, user_hash)
     else
-      User.update_location(id, user_hash)
+      return User.update_location(id, user_hash)
     end
   end
 
   def self.update_location(id, hash_obj)
-    home_loc = !hash_obj.nil? && (hash_obj.has_key?("location") ? hash_obj["location"].has_key?("home_loc") : false) #(hash_obj.has_key?("location")) then 
-    logger.info("ANAND update_location #{id.inspect} &&& home  #{home_loc}") 
-    ################  TODO fix this with final home_loc from nested array
-    ################  TODO fix this with final home_loc from nested array
-    ################  TODO fix this with final home_loc from nested array
-    ################  TODO fix this with final home_loc from nested array
-    ################  TODO fix this with final home_loc from nested array
-    ################  TODO fix this with final home_loc from nested array
-    ################  TODO fix this with final home_loc from nested array
-    ################  TODO fix this with final home_loc from nested array
-    ################  TODO fix this with final home_loc from nested array
-    ################  TODO fix this with final home_loc from nested array
-    ################  TODO fix this with final home_loc from nested array
-    ################  TODO fix this with final home_loc from nested array
-    
-    if hash_obj.has_key?("home_loc") then
-      logger.info("ANAND update_location #{id.inspect} and home_loc = #{hash_obj["home_loc"]}") 
-      @update_user = User.where(_id: id).update(home_loc: hash_obj["home_loc"])
-    end
-
-    if hash_obj.has_key?("work_loc") then 
-      @update_user = User.where(_id: id).update(work_loc: hash_obj["work_loc"])
-    end
-    
-    #    # @update_user = user_collection.update(
-    #    #         {"_id"=>id},
-    #    #         { "$set": {"home_loc": hash_obj["home_loc"]}},
-    #    #         true,
-    #    #         true
-    #    #         )
-    #   # @update_user = user_collection.findAndModify({
-    #   #         query:{"_id"=>id} },
-    #   #         update:{$set: "home_loc": hash_obj["home_loc"]},
-    #   #         new: true
-    #   #         })
-    # if(update_type == UserUpdates::UPDATE_BOTH_LOCATION) then 
-    #   construct_location_array(update_obj)
-    #   update_table(id, update_obj)
-    # elsif update_type == UserUpdates::UPDATE_DEFAULT_WORK_LOCATION then 
-    #   construct_location_array(update_obj)
-    #   update_table(id, update_obj)
-    # elsif update_type == UserUpdates::UPDATE_DEFAULT_HOME_LOCATION then 
-    #   construct_location_array(update_obj)
-    #   update_table(id, update_obj)
-    # end  
+    logger.info("ANAND UPDATING USER LOCATION #{hash_obj.inspect}")
+    if !hash_obj.nil? && (hash_obj.has_key?("location") ? hash_obj["location"].has_key?("home_loc") : false)  then
+      @home = seek(hash_obj, "location","home_loc")
+      logger.info("ANAND update_location #{id.inspect} &&& home_loc #{@home.inspect}") 
+    end  
+    if !hash_obj.nil? && (hash_obj.has_key?("location") ? hash_obj["location"].has_key?("work_loc") : false)  then
+      @work = seek(hash_obj, "location","work_loc")
+      logger.info("ANAND update_location #{id.inspect} &&& work_loc #{@work.inspect}")
+    end  
+    unless @home.nil? && @work.nil? then
+      return User.where(_id: id).update(home_loc: @home, work_loc:@work)      
+    end     
   end
+
+  def self.seek(hash_obj, *_keys_)
+    last_level    = hash_obj
+    sought_value  = nil
+    _keys_.each_with_index do |_key_, _idx_|
+      if last_level.is_a?(Hash) && last_level.has_key?(_key_)
+        if _idx_ + 1 == _keys_.length
+          sought_value = last_level[_key_]
+        else                   
+          last_level = last_level[_key_]
+        end
+      else 
+        break
+      end
+    end
+     sought_value
+  end 
 
   def self.create_with_omniauth(auth, map)
     create! do |user|
