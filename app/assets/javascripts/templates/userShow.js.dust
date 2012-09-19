@@ -1,0 +1,5 @@
+{#user.attributes}
+
+<img src="{profilePic}"/> <h1>{name}</h1>
+{user.attributes._id}
+{/user.attributes}

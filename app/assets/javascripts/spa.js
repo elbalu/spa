@@ -12,5 +12,9 @@ window.Spa = {
 
 $(document).ready(function(){
   Spa.init();
+  $('#signIn').click(function(){
+
+  alert("signin");
+});
 });
 

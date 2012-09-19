@@ -1,5 +1,8 @@
 Spa.Collections.Users = Backbone.Collection.extend({
 
-  url: '/users',
-   model: Spa.Models.User
+ 
+   model: Spa.Models.User,
+    url: '/users'
 });
+
+

@@ -3,7 +3,7 @@
     <div class="container">
     {<location/}
          <h2>Create a new post</h2>
-         <div class="pull-right"><a href="/signin">Sign in using FaceBook</a></div>
+         <div class="pull-right"><a id="signIn" href="#" rel="external">Sign in using FaceBook</a></div>
     </div>
   
 </div>
@@ -107,7 +107,8 @@
 		 <div class="post">
   			<h3>{name}</h3>
   			<div>{type}</div>  
-  			<div><a href="#" class="remove-post" id="{_id}">Remove Post</a></div>  
+        <img src="{profilePic}"/>
+  			
   		</div>
 
   	{/attributes}

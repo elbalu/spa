@@ -8,6 +8,21 @@ Spa.Views.PostsIndex = Backbone.View.extend({
     initialize: function () {
         this.collection.on('reset', this.render, this);
     },
+    events:{
+        'click #signIn':'fetchUser'
+    },
+    fetchUser:function(){
+        $.ajax({
+  url: "/signin",
+  context: document.body
+}).done(function(data) { 
+     console.log(data);
+    
+
+})
+.fail(function(error) {console.log('error'); console.log(error);});
+
+    },
     render: function () {
         dust.render('demo', {
             posts: this.collection
