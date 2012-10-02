@@ -29,6 +29,8 @@ group :assets do
 #  gem 'less-rails'
   gem 'coffee-rails', '~> 3.2.1'
 gem 'dust-rails'
+
+gem "friendly_id", "~> 4.0.1"
 #gem 'less'
 
 #gem 'dust_assets'	

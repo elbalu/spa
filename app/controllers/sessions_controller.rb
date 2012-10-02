@@ -55,11 +55,20 @@ respond_to :json
       #redirect_to '/#{user.id}'
      # redirect_to :controller=>"home", :action=>"index", :id => @user.id
      #redirect_to url_for "#users/show", :id=&gt;@user.id
-    # redirect_to url_for :controller => 'users', :action => 'show'                # => 'proto://host.com/posts/recent'
+     # redirect_to url_for :controller => 'users', :action => 'show'                # => 'proto://host.com/posts/recent'
      #redirect_to users_path, :action=>'show', :anchor => '/', :id =>@user.id
      #redirect_to url_for(:controller=>'users',:action=>:index)+"#order"
-     redirect_to :controller => 'users', :action => 'show', :id => @user.id
-     
+     #redirect_to :controller => 'users', :action => 'show', :id => @user.id  #users/id     
+##########temp##############
+     #redirect_to home_path(:id => @user.id)     
+     #render :controller=>'home', :action => 'show', :id=>@user.id  #users/id
+#####WORKING###########
+    render :template => 'users/show', :id=>@user.id  #users/id
+#####WORKING###########
+      #redirect_to :controller => 'home', :action => 'index', :id=>@user.id, :method => :post#:user => {:name => input[1], :password => input [2] },
+      #:stylesheet => 'scaffold',
+      #:method => :get)
+
     end
 
   end

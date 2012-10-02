@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   def show
     logger.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     respond_with User.find(params[:id])
+    logger.info("anand i user show #{User.find(params[:id]).inspect}")
   end
 
   def edit

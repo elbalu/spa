@@ -3,10 +3,14 @@ class User
   include Mongoid::Timestamps
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
+ # extend FriendlyId
+
 
   require 'Post'
   require 'json'
   require 'mongoid'
+
+  #friendly_id :first_name
 
   field :home_loc, :type => Array
   field :work_loc, :type => Array
@@ -81,6 +85,33 @@ class User
 
   def self.update_location(id, hash_obj)
     logger.info("ANAND UPDATING USER LOCATION #{hash_obj.inspect}")
+
+    #FIXME PUT IT AS A NESTED ATTRUIBUTE http://stackoverflow.com/questions/8841400/mongoid-accepts-nested-attributes-for-saving-parent-when-child-is-invalidwell
+    # http://stackoverflow.com/questions/10805449/mongoid-accepts-nested-attributes-for-not-saving
+    #http://mongoid.org/en/mongoid/
+
+    #FIXME PUT IT AS A NESTED ATTRUIBUTE http://stackoverflow.com/questions/8841400/mongoid-accepts-nested-attributes-for-saving-parent-when-child-is-invalidwell
+    # http://stackoverflow.com/questions/10805449/mongoid-accepts-nested-attributes-for-not-saving
+    #http://mongoid.org/en/mongoid/
+    
+    #FIXME PUT IT AS A NESTED ATTRUIBUTE http://stackoverflow.com/questions/8841400/mongoid-accepts-nested-attributes-for-saving-parent-when-child-is-invalidwell
+    # http://stackoverflow.com/questions/10805449/mongoid-accepts-nested-attributes-for-not-saving
+    #http://mongoid.org/en/mongoid/
+    
+    #FIXME PUT IT AS A NESTED ATTRUIBUTE http://stackoverflow.com/questions/8841400/mongoid-accepts-nested-attributes-for-saving-parent-when-child-is-invalidwell
+    # http://stackoverflow.com/questions/10805449/mongoid-accepts-nested-attributes-for-not-saving
+    #http://mongoid.org/en/mongoid/
+
+        #FIXME PUT IT AS A NESTED ATTRUIBUTE http://stackoverflow.com/questions/8841400/mongoid-accepts-nested-attributes-for-saving-parent-when-child-is-invalidwell
+    # http://stackoverflow.com/questions/10805449/mongoid-accepts-nested-attributes-for-not-saving
+    #http://mongoid.org/en/mongoid/
+    
+    #FIXME PUT IT AS A NESTED ATTRUIBUTE http://stackoverflow.com/questions/8841400/mongoid-accepts-nested-attributes-for-saving-parent-when-child-is-invalidwell
+    # http://stackoverflow.com/questions/10805449/mongoid-accepts-nested-attributes-for-not-saving
+    #http://mongoid.org/en/mongoid/
+    
+
+
     if !hash_obj.nil? && (hash_obj.has_key?("location") ? hash_obj["location"].has_key?("home_loc") : false)  then
       @home = seek(hash_obj, "location","home_loc")
       logger.info("ANAND update_location #{id.inspect} &&& home_loc #{@home.inspect}") 
